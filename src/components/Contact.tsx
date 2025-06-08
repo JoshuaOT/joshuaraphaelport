@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,6 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Mail, Phone, MapPin, Clock, Linkedin, Send, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG, EmailTemplateParams } from '@/lib/emailjs';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -21,16 +22,52 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
-    
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
+    // Form validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Initialize EmailJS with public key
+      emailjs.init(EMAILJS_CONFIG.publicKey);
+
+      // Prepare template parameters
+      const templateParams: EmailTemplateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Joshua Raphael',
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        templateParams
+      );
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+      
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast({
+        title: "Failed to send message",
+        description: "There was an error sending your message. Please try again or contact me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -113,7 +150,7 @@ const Contact = () => {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-sm font-medium">Name</Label>
+                    <Label htmlFor="name" className="text-sm font-medium">Name *</Label>
                     <Input
                       id="name"
                       name="name"
@@ -126,7 +163,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+                    <Label htmlFor="email" className="text-sm font-medium">Email *</Label>
                     <Input
                       id="email"
                       name="email"
@@ -140,7 +177,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-sm font-medium">Message</Label>
+                    <Label htmlFor="message" className="text-sm font-medium">Message *</Label>
                     <Textarea
                       id="message"
                       name="message"
