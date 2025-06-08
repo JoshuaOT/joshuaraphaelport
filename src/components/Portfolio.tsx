@@ -2,7 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, TrendingUp, Zap } from 'lucide-react';
 
 const Portfolio = () => {
   const projects = [
@@ -11,6 +11,7 @@ const Portfolio = () => {
       description: "Automated CSV to Google Sheets workflow that eliminated manual data entry",
       image: "📈",
       metrics: "70% time saved",
+      metricIcon: TrendingUp,
       technologies: ["n8n", "Google Sheets API", "JavaScript", "CSV Processing"],
       highlights: [
         "Automated file processing and validation",
@@ -19,13 +20,15 @@ const Portfolio = () => {
         "Reduced processing time from hours to minutes"
       ],
       caseStudyUrl: "#",
-      codeUrl: "#"
+      codeUrl: "#",
+      gradient: "from-primary/10 to-transparent"
     },
     {
       title: "Crypto Price Monitor",
       description: "Real-time BTC & ETH price tracking with automated email alerts",
       image: "₿",
       metrics: "Real-time alerts",
+      metricIcon: Zap,
       technologies: ["Node.js", "Cryptocurrency APIs", "Email Automation", "Webhooks"],
       highlights: [
         "Multi-exchange price aggregation",
@@ -34,13 +37,15 @@ const Portfolio = () => {
         "Portfolio tracking capabilities"
       ],
       caseStudyUrl: "#",
-      codeUrl: "#"
+      codeUrl: "#",
+      gradient: "from-neon-blue/10 to-transparent"
     },
     {
       title: "AI-Powered Email Assistant",
       description: "Intelligent email processing workflow using OpenAI and Telegram",
       image: "📧",
       metrics: "90% accuracy",
+      metricIcon: TrendingUp,
       technologies: ["n8n", "OpenAI GPT-4", "Telegram Bot", "Email APIs"],
       highlights: [
         "Natural language email classification",
@@ -49,13 +54,15 @@ const Portfolio = () => {
         "Telegram notifications for urgent emails"
       ],
       caseStudyUrl: "#",
-      codeUrl: "#"
+      codeUrl: "#",
+      gradient: "from-neon-green/10 to-transparent"
     },
     {
       title: "Internal Knowledge Chatbot",
       description: "Company knowledge base chatbot with high accuracy responses",
       image: "💬",
       metrics: "90%+ accuracy",
+      metricIcon: TrendingUp,
       technologies: ["OpenAI", "Vector Database", "RAG", "Custom Training"],
       highlights: [
         "Company-specific knowledge training",
@@ -64,19 +71,29 @@ const Portfolio = () => {
         "Continuous learning and improvement"
       ],
       caseStudyUrl: "#",
-      codeUrl: "#"
+      codeUrl: "#",
+      gradient: "from-purple-500/10 to-transparent"
     }
   ];
 
   return (
-    <section id="portfolio" className="py-20">
-      <div className="container mx-auto px-4">
+    <section id="portfolio" className="py-20 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-primary/5"></div>
+      <div className="absolute top-32 left-10 w-40 h-40 border border-primary/10 rounded-full animate-pulse"></div>
+      <div className="absolute bottom-32 right-10 w-28 h-28 bg-neon-green/5 rounded-lg rotate-45 animate-float"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in">
+            <div className="inline-flex items-center gap-3 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-6 py-3 mb-6">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-primary">Featured Work</span>
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
               Portfolio
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Real-world automation solutions that deliver measurable results
             </p>
           </div>
@@ -85,37 +102,43 @@ const Portfolio = () => {
             {projects.map((project, index) => (
               <Card 
                 key={project.title}
-                className="hover:shadow-xl transition-all duration-300 hover:scale-105 group overflow-hidden"
+                className="hover:shadow-xl transition-all duration-300 hover:scale-105 group overflow-hidden relative border-0 bg-card/50 backdrop-blur-sm animate-slide-in-left"
                 style={{
                   animationDelay: `${index * 0.2}s`
                 }}
               >
-                <CardHeader className="relative">
-                  <div className="flex items-start justify-between">
+                {/* Background Gradient */}
+                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${project.gradient} rounded-bl-3xl opacity-50 group-hover:opacity-70 transition-opacity duration-300`}></div>
+                
+                <CardHeader className="relative z-10">
+                  <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-16 h-16 bg-gradient-to-br from-background to-muted rounded-lg flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
                         {project.image}
                       </div>
                       <div>
-                        <CardTitle className="text-xl mb-2">{project.title}</CardTitle>
-                        <Badge variant="secondary" className="bg-primary/10 text-primary">
-                          {project.metrics}
-                        </Badge>
+                        <CardTitle className="text-xl mb-2 leading-tight">{project.title}</CardTitle>
+                        <div className="flex items-center space-x-2">
+                          <project.metricIcon className="w-4 h-4 text-primary" />
+                          <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                            {project.metrics}
+                          </Badge>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <CardDescription className="text-base mt-4">
+                  <CardDescription className="text-base leading-relaxed">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-6 relative z-10">
                   {/* Technologies */}
                   <div>
-                    <h4 className="font-medium mb-2 text-sm">Technologies Used:</h4>
+                    <h4 className="font-medium mb-3 text-sm">Technologies Used:</h4>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs">
+                        <Badge key={tech} variant="outline" className="text-xs border-primary/30 hover:bg-primary/10 transition-colors duration-200">
                           {tech}
                         </Badge>
                       ))}
@@ -124,8 +147,8 @@ const Portfolio = () => {
 
                   {/* Key Highlights */}
                   <div>
-                    <h4 className="font-medium mb-2 text-sm">Key Highlights:</h4>
-                    <ul className="space-y-1">
+                    <h4 className="font-medium mb-3 text-sm">Key Highlights:</h4>
+                    <ul className="space-y-2">
                       {project.highlights.slice(0, 3).map((highlight) => (
                         <li key={highlight} className="flex items-start space-x-2 text-sm">
                           <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
@@ -140,7 +163,7 @@ const Portfolio = () => {
                     <Button 
                       variant="outline" 
                       size="sm"
-                      className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                      className="flex-1 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105"
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
                       Case Study
@@ -148,7 +171,7 @@ const Portfolio = () => {
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      className="flex-1"
+                      className="flex-1 hover:bg-muted transition-all duration-300 hover:scale-105"
                     >
                       <Github className="w-4 h-4 mr-2" />
                       Code
@@ -157,6 +180,19 @@ const Portfolio = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Portfolio Summary */}
+          <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: '1s' }}>
+            <Card className="inline-block border-2 border-dashed border-primary/30 bg-primary/5 backdrop-blur-sm">
+              <CardContent className="p-6">
+                <p className="text-muted-foreground">
+                  <span className="font-semibold text-primary">4</span> featured projects • 
+                  <span className="font-semibold text-primary"> 15+</span> technologies mastered • 
+                  <span className="font-semibold text-primary">100%</span> client satisfaction
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
