@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -69,7 +68,9 @@ export default {
 				},
 				teal: {
 					muted: '#2AB7CA'
-				}
+				},
+				// Keep the custom accent blue for reference
+				'accent-blue': '#0A84FF'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

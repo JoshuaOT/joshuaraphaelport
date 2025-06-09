@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -37,20 +38,25 @@ const Contact = () => {
       // Initialize EmailJS with public key
       emailjs.init(EMAILJS_CONFIG.publicKey);
 
-      // Prepare template parameters
+      // Prepare template parameters with recipient email
       const templateParams: EmailTemplateParams = {
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
         to_name: 'Joshua Raphael',
+        to_email: 'joshua.raphael@email.com', // Add recipient email
       };
 
+      console.log('Sending email with params:', templateParams);
+
       // Send email using EmailJS
-      await emailjs.send(
+      const result = await emailjs.send(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
         templateParams
       );
+
+      console.log('EmailJS result:', result);
 
       toast({
         title: "Message sent successfully!",
@@ -90,28 +96,28 @@ const Contact = () => {
       label: "Phone",
       value: "+234 XXX XXX XXXX",
       link: "tel:+234XXXXXXXXX",
-      color: "text-neon-blue"
+      color: "text-primary"
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
       value: "Connect with me",
       link: "https://linkedin.com/in/joshua-raphael",
-      color: "text-neon-green"
+      color: "text-primary"
     },
     {
       icon: MapPin,
       label: "Location",
       value: "Abuja, Nigeria",
       link: "#",
-      color: "text-purple-500"
+      color: "text-primary"
     },
     {
       icon: Clock,
       label: "Working Hours",
       value: "Mon-Fri, 9AM-6PM WAT",
       link: "#",
-      color: "text-orange-500"
+      color: "text-primary"
     }
   ];
 
@@ -266,10 +272,10 @@ const Contact = () => {
               </Card>
 
               {/* Availability Status */}
-              <Card className="border border-neon-green/30 bg-neon-green/5">
+              <Card className="border border-primary/30 bg-primary/5">
                 <CardContent className="p-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-neon-green rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
                     <div>
                       <p className="font-medium text-sm">Available for new projects</p>
                       <p className="text-xs text-muted-foreground">Typically responds within 24 hours</p>
