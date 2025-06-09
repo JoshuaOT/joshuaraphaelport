@@ -7,7 +7,7 @@ export const EMAILJS_CONFIG = {
 };
 
 // Template parameters interface for type safety
-export interface EmailTemplateParams {
+export interface EmailTemplateParams extends Record<string, unknown> {
   from_name: string;
   from_email: string;
   message: string;

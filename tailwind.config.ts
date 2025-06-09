@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,8 +64,8 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				neon: {
-					blue: '#00D4FF',
-					green: '#00FF88'
+					blue: '#00E5FF',
+					green: '#39FF14'
 				}
 			},
 			borderRadius: {
@@ -115,10 +116,10 @@ export default {
 				},
 				'glow': {
 					'0%, 100%': {
-						boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)'
+						boxShadow: '0 0 20px rgba(0, 229, 255, 0.3)'
 					},
 					'50%': {
-						boxShadow: '0 0 30px rgba(0, 212, 255, 0.6)'
+						boxShadow: '0 0 30px rgba(0, 229, 255, 0.6)'
 					}
 				},
 				'spin-slow': {
