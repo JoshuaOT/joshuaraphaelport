@@ -7,83 +7,85 @@
 
 @layer base {
   :root {
-    --background: 255 255 255;
-    --foreground: 33 33 33;
+    /* Light Mode - Bright and Clean */
+    --background: 255 255 255; /* #FFFFFF */
+    --foreground: 34 34 34; /* #222222 */
 
-    --card: 255 255 255;
-    --card-foreground: 33 33 33;
+    --card: 255 255 255; /* #FFFFFF */
+    --card-foreground: 34 34 34; /* #222222 */
 
-    --popover: 255 255 255;
-    --popover-foreground: 33 33 33;
+    --popover: 255 255 255; /* #FFFFFF */
+    --popover-foreground: 34 34 34; /* #222222 */
 
-    --primary: 0 229 255;
-    --primary-foreground: 18 18 18;
+    --primary: 58 141 255; /* #3A8DFF - Steel Blue */
+    --primary-foreground: 255 255 255; /* #FFFFFF */
 
-    --secondary: 245 245 245;
-    --secondary-foreground: 33 33 33;
+    --secondary: 242 242 242; /* #F2F2F2 */
+    --secondary-foreground: 34 34 34; /* #222222 */
 
-    --muted: 245 245 245;
-    --muted-foreground: 115 115 115;
+    --muted: 242 242 242; /* #F2F2F2 */
+    --muted-foreground: 102 102 102; /* #666666 */
 
-    --accent: 245 245 245;
-    --accent-foreground: 33 33 33;
+    --accent: 242 242 242; /* #F2F2F2 */
+    --accent-foreground: 34 34 34; /* #222222 */
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 229 229 229;
-    --input: 229 229 229;
-    --ring: 0 229 255;
+    --border: 224 224 224; /* #E0E0E0 */
+    --input: 224 224 224; /* #E0E0E0 */
+    --ring: 58 141 255; /* #3A8DFF */
 
     --radius: 0.5rem;
 
     --sidebar-background: 255 255 255;
-    --sidebar-foreground: 33 33 33;
-    --sidebar-primary: 0 229 255;
-    --sidebar-primary-foreground: 18 18 18;
-    --sidebar-accent: 245 245 245;
-    --sidebar-accent-foreground: 33 33 33;
-    --sidebar-border: 229 229 229;
-    --sidebar-ring: 0 229 255;
+    --sidebar-foreground: 34 34 34;
+    --sidebar-primary: 58 141 255;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 242 242 242;
+    --sidebar-accent-foreground: 34 34 34;
+    --sidebar-border: 224 224 224;
+    --sidebar-ring: 58 141 255;
   }
 
   .dark {
-    --background: 18 18 18;
-    --foreground: 255 255 255;
+    /* Dark Mode - Nearly Black and Sharp */
+    --background: 13 13 13; /* #0D0D0D */
+    --foreground: 255 255 255; /* #FFFFFF */
 
-    --card: 30 30 30;
-    --card-foreground: 255 255 255;
+    --card: 26 26 26; /* #1A1A1A */
+    --card-foreground: 255 255 255; /* #FFFFFF */
 
-    --popover: 30 30 30;
-    --popover-foreground: 255 255 255;
+    --popover: 26 26 26; /* #1A1A1A */
+    --popover-foreground: 255 255 255; /* #FFFFFF */
 
-    --primary: 0 229 255;
-    --primary-foreground: 18 18 18;
+    --primary: 58 141 255; /* #3A8DFF - Same Steel Blue */
+    --primary-foreground: 255 255 255; /* #FFFFFF */
 
-    --secondary: 42 42 42;
-    --secondary-foreground: 204 204 204;
+    --secondary: 46 46 46; /* #2E2E2E */
+    --secondary-foreground: 179 179 179; /* #B3B3B3 */
 
-    --muted: 42 42 42;
-    --muted-foreground: 163 163 163;
+    --muted: 46 46 46; /* #2E2E2E */
+    --muted-foreground: 179 179 179; /* #B3B3B3 */
 
-    --accent: 42 42 42;
-    --accent-foreground: 204 204 204;
+    --accent: 46 46 46; /* #2E2E2E */
+    --accent-foreground: 179 179 179; /* #B3B3B3 */
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 42 42 42;
-    --input: 42 42 42;
-    --ring: 0 229 255;
+    --border: 46 46 46; /* #2E2E2E */
+    --input: 46 46 46; /* #2E2E2E */
+    --ring: 58 141 255; /* #3A8DFF */
 
-    --sidebar-background: 18 18 18;
-    --sidebar-foreground: 204 204 204;
-    --sidebar-primary: 0 229 255;
-    --sidebar-primary-foreground: 18 18 18;
-    --sidebar-accent: 42 42 42;
-    --sidebar-accent-foreground: 204 204 204;
-    --sidebar-border: 42 42 42;
-    --sidebar-ring: 0 229 255;
+    --sidebar-background: 13 13 13;
+    --sidebar-foreground: 179 179 179;
+    --sidebar-primary: 58 141 255;
+    --sidebar-primary-foreground: 255 255 255;
+    --sidebar-accent: 46 46 46;
+    --sidebar-accent-foreground: 179 179 179;
+    --sidebar-border: 46 46 46;
+    --sidebar-ring: 58 141 255;
   }
 }
 
@@ -103,11 +105,11 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary to-neon-green bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent;
   }
   
   .border-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)), #00FF88);
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary)));
     padding: 1px;
     border-radius: inherit;
   }

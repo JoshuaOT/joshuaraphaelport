@@ -63,9 +63,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				neon: {
-					blue: '#00E5FF',
-					green: '#39FF14'
+				// Professional accent colors
+				steel: {
+					blue: '#3A8DFF'
+				},
+				teal: {
+					muted: '#2AB7CA'
 				}
 			},
 			borderRadius: {
@@ -116,10 +119,10 @@ export default {
 				},
 				'glow': {
 					'0%, 100%': {
-						boxShadow: '0 0 20px rgba(0, 229, 255, 0.3)'
+						boxShadow: '0 0 20px rgba(58, 141, 255, 0.3)'
 					},
 					'50%': {
-						boxShadow: '0 0 30px rgba(0, 229, 255, 0.6)'
+						boxShadow: '0 0 30px rgba(58, 141, 255, 0.6)'
 					}
 				},
 				'spin-slow': {
