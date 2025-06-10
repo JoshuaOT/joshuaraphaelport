@@ -114,9 +114,9 @@ const Skills = () => {
             <Card className="inline-block border-2 border-dashed border-primary/30 bg-primary/5 backdrop-blur-sm">
               <CardContent className="p-6">
                 <p className="text-muted-foreground">
-                  <span className="font-semibold text-primary">50+</span> successful automation projects • 
+                  <span className="font-semibold text-primary">25+</span> successful automation projects • 
                   <span className="font-semibold text-primary"> 90%+</span> client satisfaction rate • 
-                  <span className="font-semibold text-primary">70%</span> average time savings
+                  <span className="font-semibold text-primary">80%</span> average time savings
                 </p>
               </CardContent>
             </Card>

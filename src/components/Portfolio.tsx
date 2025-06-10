@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -21,7 +21,8 @@ const Portfolio = () => {
       ],
       caseStudyUrl: "#",
       codeUrl: "#",
-      gradient: "from-primary/10 to-transparent"
+      gradient: "from-primary/10 to-transparent",
+      slug: "sales-data-entry-automation"
     },
     {
       title: "Crypto Price Monitor",
@@ -38,7 +39,8 @@ const Portfolio = () => {
       ],
       caseStudyUrl: "#",
       codeUrl: "#",
-      gradient: "from-neon-blue/10 to-transparent"
+      gradient: "from-neon-blue/10 to-transparent",
+      slug: "crypto-price-monitor"
     },
     {
       title: "AI-Powered Email Assistant",
@@ -55,7 +57,8 @@ const Portfolio = () => {
       ],
       caseStudyUrl: "#",
       codeUrl: "#",
-      gradient: "from-neon-green/10 to-transparent"
+      gradient: "from-neon-green/10 to-transparent",
+      slug: "ai-powered-email-assistant"
     },
     {
       title: "Internal Knowledge Chatbot",
@@ -72,7 +75,8 @@ const Portfolio = () => {
       ],
       caseStudyUrl: "#",
       codeUrl: "#",
-      gradient: "from-purple-500/10 to-transparent"
+      gradient: "from-purple-500/10 to-transparent",
+      slug: "internal-knowledge-chatbot"
     }
   ];
 
@@ -158,25 +162,7 @@ const Portfolio = () => {
                     </ul>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex space-x-3 pt-4">
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="flex-1 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Case Study
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      className="flex-1 hover:bg-muted transition-all duration-300 hover:scale-105"
-                    >
-                      <Github className="w-4 h-4 mr-2" />
-                      Code
-                    </Button>
-                  </div>
+
                 </CardContent>
               </Card>
             ))}
@@ -187,9 +173,9 @@ const Portfolio = () => {
             <Card className="inline-block border-2 border-dashed border-primary/30 bg-primary/5 backdrop-blur-sm">
               <CardContent className="p-6">
                 <p className="text-muted-foreground">
-                  <span className="font-semibold text-primary">4</span> featured projects • 
-                  <span className="font-semibold text-primary"> 15+</span> technologies mastered • 
-                  <span className="font-semibold text-primary">100%</span> client satisfaction
+                  <span className="font-semibold text-primary">4+</span> featured projects • 
+                  <span className="font-semibold text-primary"> 10+</span> technologies mastered • 
+                  <span className="font-semibold text-primary">90%</span> client satisfaction
                 </p>
               </CardContent>
             </Card>

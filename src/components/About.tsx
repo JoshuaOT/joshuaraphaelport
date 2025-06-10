@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Download, GraduationCap, Briefcase, Award, MapPin } from 'lucide-react';
+import { GraduationCap, Briefcase, Award, MapPin } from 'lucide-react';
 
 const About = () => {
   const handleDownloadCV = () => {
@@ -47,7 +47,7 @@ const About = () => {
                     
                     <div className="prose prose-lg dark:prose-invert">
                       <p className="text-lg leading-relaxed text-muted-foreground mb-4">
-                        I build automations and AI agents that actually work… Let's tackle challenges together.
+                        I build automations and AI agents that actually work.
                       </p>
                       <p className="text-base leading-relaxed text-muted-foreground">
                         With a passion for solving complex problems through intelligent automation, 
@@ -57,15 +57,6 @@ const About = () => {
                       </p>
                     </div>
                     
-                    <div className="pt-4">
-                      <Button 
-                        onClick={handleDownloadCV}
-                        className="group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-                      >
-                        <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" />
-                        Download CV
-                      </Button>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -74,13 +65,13 @@ const About = () => {
               <div className="grid grid-cols-2 gap-4">
                 <Card className="text-center p-6 hover:scale-105 transition-all duration-300 border border-primary/20">
                   <CardContent className="p-0">
-                    <div className="text-3xl font-bold text-gradient mb-2">3+</div>
+                    <div className="text-3xl font-bold text-gradient mb-2">6 months+</div>
                     <div className="text-sm text-muted-foreground">Years Experience</div>
                   </CardContent>
                 </Card>
                 <Card className="text-center p-6 hover:scale-105 transition-all duration-300 border border-neon-green/20">
                   <CardContent className="p-0">
-                    <div className="text-3xl font-bold text-gradient mb-2">50+</div>
+                    <div className="text-3xl font-bold text-gradient mb-2">25+</div>
                     <div className="text-sm text-muted-foreground">Projects Completed</div>
                   </CardContent>
                 </Card>

@@ -96,13 +96,6 @@ const Hero = () => {
                   <span className="relative z-10">View My Work</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
                 </Button>
-                
-                <Button 
-                  variant="outline"
-                  className="border-2 border-primary/30 text-primary hover:bg-primary/10 px-8 py-4 text-lg font-medium rounded-full transition-all duration-300 hover:scale-105"
-                >
-                  Download CV
-                </Button>
               </div>
               
               {/* Enhanced scroll indicator */}

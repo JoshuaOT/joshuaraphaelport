@@ -15,6 +15,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,9 +43,10 @@ const Contact = () => {
       const templateParams: EmailTemplateParams = {
         from_name: formData.name,
         from_email: formData.email,
+        subject: formData.subject,
         message: formData.message,
         to_name: 'Joshua Raphael',
-        to_email: 'joshua.raphael@email.com', // Add recipient email
+        to_email: 'raphaelotjoshua@gmail.com', // Add recipient email
       };
 
       console.log('Sending email with params:', templateParams);
@@ -63,7 +65,7 @@ const Contact = () => {
         description: "Thank you for your message. I'll get back to you soon.",
       });
       
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('EmailJS Error:', error);
       toast({
@@ -87,22 +89,24 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "joshua.raphael@email.com",
-      link: "mailto:joshua.raphael@email.com",
+      value: "raphaelotjoshua@gmail.com",
+      link: "mailto:raphaelotjoshua@gmail.com",
       color: "text-primary"
     },
     {
-      icon: Phone,
-      label: "Phone",
-      value: "+234 XXX XXX XXXX",
-      link: "tel:+234XXXXXXXXX",
-      color: "text-primary"
-    },
+    icon: Phone,
+    label: "Phone",
+    numbers: [   // ← new
+      { display: "+234 813 359 1265", link: "tel:+2348133591265" },
+      { display: "+234 815 533 0562", link: "tel:+2348155330562" }
+    ],
+    color: "text-primary"
+  },
     {
       icon: Linkedin,
       label: "LinkedIn",
       value: "Connect with me",
-      link: "https://linkedin.com/in/joshua-raphael",
+      link: "https://linkedin.com/in/joshua-raphael-152a7130b",
       color: "text-primary"
     },
     {
@@ -162,7 +166,7 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Your full name"
+                      placeholder="Lebron James"
                       className="border-primary/20 focus:border-primary transition-colors"
                       required
                     />
@@ -176,8 +180,22 @@ const Contact = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="your.email@example.com"
+                      placeholder="automate@aiagent.n8n"
                       className="border-primary/20 focus:border-primary transition-colors"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="subject" className="text-sm font-medium">Subject *</Label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      type="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder="We’re looking for an experienced automation professional skilled in n8n"
+                      className="border-primary/20 focus:border-primary transition-colors resize-none"
                       required
                     />
                   </div>
@@ -228,48 +246,68 @@ const Contact = () => {
               </div>
 
               <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <Card key={info.label} className="border-l-4 border-l-primary/30 hover:border-l-primary transition-all duration-300 hover:shadow-lg group">
-                    <CardContent className="p-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-gradient-to-br from-background to-muted rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                            <info.icon className={`w-5 h-5 ${info.color}`} />
-                          </div>
-                        </div>
-                        <div>
-                          <p className="font-medium text-sm mb-1">{info.label}</p>
-                          {info.link !== "#" ? (
-                            <a 
-                              href={info.link}
-                              className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
-                              target={info.link.startsWith('http') ? '_blank' : undefined}
-                              rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                            >
-                              {info.value}
-                            </a>
-                          ) : (
-                            <p className="text-muted-foreground font-medium">{info.value}</p>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                {contactInfo.map((info) => {
+  const Icon = info.icon;
+  return (
+    <Card key={info.label} className="border-l-4 border-l-primary/30 …">
+      <CardContent className="p-4">
+        <div className="flex items-center space-x-4">
+          <div className="…icon wrapper…">
+            <Icon className={`w-5 h-5 ${info.color}`} />
+          </div>
+          <div>
+            <p className="font-medium text-sm mb-1">{info.label}</p>
+
+            {/* PHONE SPECIAL CASE */}
+            {info.numbers ? (
+              info.numbers.map((phone, i) => (
+                <a
+                  key={i}
+                  href={phone.link}
+                  className="block text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
+                >
+                  {phone.display}
+                </a>
+              ))
+            ) : info.link && info.value ? (
+              <a
+                href={info.link}
+                className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
+                target={info.link.startsWith("http") ? "_blank" : undefined}
+                rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
+                {info.value}
+              </a>
+            ) : (
+              <p className="text-muted-foreground font-medium">{info.value}</p>
+            )}
+
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+})}
               </div>
 
-              {/* LinkedIn Badge Placeholder */}
-              <Card className="border-2 border-dashed border-primary/30 bg-primary/5 backdrop-blur-sm hover:border-primary/50 transition-all duration-300">
-                <CardContent className="p-6 text-center">
-                  <Linkedin className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <p className="text-muted-foreground text-sm mb-2">
-                    LinkedIn Professional Badge
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Connect for professional networking
-                  </p>
-                </CardContent>
-              </Card>
+              {/* LinkedIn Link Card */}
+<a
+  href="https://linkedin.com/in/joshua-raphael-152a7130b"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block"                    // so the link fills the card
+>
+  <Card className="cursor-pointer border-2 border-dashed border-primary/30 bg-primary/5 backdrop-blur-sm hover:border-primary/50 transition-all duration-300">
+    <CardContent className="p-6 text-center">
+      <Linkedin className="w-12 h-12 text-primary mx-auto mb-4" />
+      <h4 className="font-medium mb-2">Connect on LinkedIn</h4>
+      <p className="text-xs text-muted-foreground">
+        View my full profile
+      </p>
+    </CardContent>
+  </Card>
+</a>
+
 
               {/* Availability Status */}
               <Card className="border border-primary/30 bg-primary/5">
